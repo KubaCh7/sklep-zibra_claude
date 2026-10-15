@@ -123,10 +123,11 @@
   /* ---------- Word-by-word statement (Apple style) ---------- */
   const statement = document.querySelector('[data-words]');
   if (statement) {
-    const highlight = /^(piątej|rano|kanapkami,|kawą)$/i;
+    const highlight = /^(piątej|rano|kanapkami,)$/i;
+    const highlightOrange = /^(gorącą|kawą)$/i;
     const words = statement.textContent.trim().split(/\s+/);
     statement.innerHTML = words
-      .map(w => `<span class="w${highlight.test(w) ? ' hl' : ''}">${w.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</span>`)
+      .map(w => `<span class="w${highlight.test(w) ? ' hl' : highlightOrange.test(w) ? ' hl-o' : ''}">${w.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</span>`)
       .join(' ');
     const spans = [...statement.querySelectorAll('.w')];
 
